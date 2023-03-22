@@ -2,49 +2,49 @@ package ru.msm.edu.lesson_2.ComplexNumbers;
 
 public class ComplexNumbers {
 
-    private double a;
-    private double b = 0;
+    private double real;
+    private double imagine = 0;
 
-    public double getA() {
-        return a;
+    public double getReal() {
+        return real;
     }
 
-    public double getB() {
-        return b;
+    public double getImagine() {
+        return imagine;
     }
 
-    public ComplexNumbers(double a) {
-        this.a = a;
+    public ComplexNumbers(double real) {
+        this.real = real;
     }
 
-    public ComplexNumbers(double a, double b) {
-        this.a = a;
-        this.b = b;
+    public ComplexNumbers(double real, double imagine) {
+        this.real = real;
+        this.imagine = imagine;
     }
 
-    public ComplexNumbers add(ComplexNumbers complexNumbers) {
-        return new ComplexNumbers(this.a + complexNumbers.getA(), this.b + complexNumbers.getB());
+    public ComplexNumbers add(ComplexNumbers other) {
+        return new ComplexNumbers(this.real + other.getReal(), this.imagine + other.getImagine());
     }
 
-    public ComplexNumbers subtract(ComplexNumbers complexNumbers) {
-        return new ComplexNumbers(this.a - complexNumbers.getA(), this.b - complexNumbers.getB());
+    public ComplexNumbers subtract(ComplexNumbers other) {
+        return new ComplexNumbers(this.real - other.getReal(), this.imagine - other.getImagine());
     }
 
-    public ComplexNumbers multiply(ComplexNumbers cNum) {
-        double a_ = this.a * cNum.getA();
-        if (this.b != 0 && cNum.getB() != 0) {
-            a_ -= this.b * cNum.getB();
+    public ComplexNumbers multiply(ComplexNumbers other) {
+        double newReal = this.real * other.getReal();
+        if (this.imagine != 0 && other.getImagine() != 0) {
+            newReal -= this.imagine * other.getImagine();
         }
-        double b_ = this.a * cNum.getB() + this.b * cNum.getA();
-        return new ComplexNumbers(a_, b_);
+        double newImagine = this.real * other.getImagine() + this.imagine * other.getReal();
+        return new ComplexNumbers(newReal, newImagine);
     }
 
     public double abs() {
-        return Math.sqrt(Math.pow(a, 2) + Math.pow(b, 2));
+        return Math.sqrt(Math.pow(real, 2) + Math.pow(imagine, 2));
     }
 
     @Override
     public String toString() {
-        return  String.format("%f + %fi", this.a, this.b);
+        return String.format("%f + %fi", this.real, this.imagine);
     }
 }

@@ -46,7 +46,7 @@ public class MessageHandlerImpl implements MessageHandler {
                 Matcher m = p.matcher(message);
                 m.find();
                 String repl = m.group().replaceAll(word, String.valueOf(newWord));
-                message = message.replaceAll(separator + "?" + word + separator + "?", repl);
+                message = message.replaceFirst(separator + "?" + word + separator + "?", repl);
             }
         }
         sendProcessedMessage(message);
